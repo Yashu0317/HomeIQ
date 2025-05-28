@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      background-image: url('./images/bg6.jpg');
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #82d3c8a8;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .title {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.5); 
+  backdrop-filter: blur(20px); 
+  background-blend-mode: color-burn;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1PX ; 
+  width: 90%;
+  max-width: 1200px;
+  height: 40%;
+}
+
+    .welcome-text {
+      max-width: 50%;
+    }
+
+    .welcome-text h1 {
+      font-size: 28px;
+      font-weight: bolder;
+      margin: 0;
+      color: #000;
+    }
+
+    .welcome-text p {
+      font-size: 16px;
+      color: #666;
+      margin: 10px 0 20px;
+    }
+
+    .welcome-text button {
+      background-color: #00a9a5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .welcome-text button:hover {
+      background-color: #007f7c;
+    }
+
+    .welcome-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .device-section {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.4); 
+  backdrop-filter: blur(20px); 
+  background-blend-mode: color-burn;
+  border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .device-section img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .device-section button {
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .device-section button:hover {
+      background-color: #0097a7;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin-top: 20px;
+    }
+
+    .grid-item {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn {
+      padding: 12px 18px;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+    .self-service {
+      display: flex;
+      justify-content: space-around;
+      width: 90%;
+      max-width: 1200px;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.3); 
+  backdrop-filter: blur(20px); 
+  background-blend-mode: color-burn;
+  border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: 10%; 
+    }
+
+    .self-service div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #2a2a2a;
+      font-size: 14px;
+    }
+
+    .self-service img {
+      max-width: 40px;
+      margin-bottom: 5px;
+    }
+
+    .self-service a {
+        text-decoration: none;
+        color: #2a2a2a;
+      }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">HomeIQ </div>
+  </header>
+
+  <div class="content">
+    <div class="welcome-container">
+      <div class="welcome-text">
+        <h1>Welcome to SmartHome</h1>
+        <p>Learn more about the app with these tutorials.</p>
+        <a href="./gsp1.html"><button>Get Started</button></a>
+      </div>
+      <div class="welcome-image">
+        <img src="./images/wcimg1.png" alt="Smart Home Image">
+      </div>
+    </div>
+
+    <div class="device-section">
+      <img src="./images/devimg.webp" alt="Devices">
+      <p>Power on the device and get the network ready.</p>
+      <button><a href="./device.html" style="color: white; text-decoration: none;">Add Device</a></button>
+    </div>
+
+    <div class="content">
+      <div class="grid-container">
+        <div class="grid-item ai-control">
+          <h1>AI Smart Home Control</h1>
+          <h3>Light Control</h3>
+          <button id="light-btn" class="btn off">Turn On</button>
+          <h3>Temperature Control</h3>
+          <input type="range" id="temp-slider" min="16" max="30" value="22"> 
+          <span id="temp-display">22°C</span>
+        </div>
+  
+        <div class="grid-item energy-monitor">
+          <h1>Energy Monitoring Dashboard</h1>
+          <p>Real-time energy consumption and renewable energy usage.</p>
+          <div class="energy-data">Current Energy Use: <span id="energy-use">--</span> kWh</div>
+          <div class="energy-data">Solar Energy Contribution: <span id="solar-energy">--</span> kWh</div>
+          <div class="energy-data">Energy Efficiency Tips: <span id="efficiency-tips">--</span></div>
+        </div>
+  
+        <div class="grid-item ar-visualization">
+          <h1>Augmented Reality Smart Home Setup</h1>
+          <p>Visualize and customize your smart home setup before installation.</p>
+          <button id="ar-start" class="btn">Start AR Visualization</button>
+          <p>Status: <span id="ar-status">Not Active</span></p>
+          <video id="ar-preview" width="300" height="200" style="display: none; border: 1px solid black;"></video>
+        </div>
+  
+        <div class="grid-item privacy-security">
+          <h1>Privacy & Data Security</h1>
+          <p>Your data is secured with end-to-end encryption and multi-factor authentication.</p>
+          <button id="enable-security" class="btn">Enable Security Mode</button>
+          <p>Status: <span id="security-status">Disabled</span></p>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="self-service">
+      <div>
+          <a href="./sh1.html">
+              <img src="./images/5981798.png" alt="Self Help">
+          </a>
+          <a href="./sh1.html">Self Help</a>
+      </div>
+      <div>
+          <a href="./contact.html">
+              <img src="./images/LS20250106045651.png" alt="Contact Us">
+          </a>
+          <a href="./contact.html">Contact Us</a>
+      </div>
+  </div>
+  
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let lightBtn = document.getElementById("light-btn");
+        let tempSlider = document.getElementById("temp-slider");
+        let tempDisplay = document.getElementById("temp-display");
+        let energyUse = document.getElementById("energy-use");
+        let solarEnergy = document.getElementById("solar-energy");
+        let efficiencyTips = document.getElementById("efficiency-tips");
+        let arStart = document.getElementById("ar-start");
+        let arStatus = document.getElementById("ar-status");
+        let arPreview = document.getElementById("ar-preview");
+        let securityButton = document.getElementById("enable-security");
+        let securityStatus = document.getElementById("security-status");
+
+        // Load previous settings (AI Learning Simulation)
+        let savedLight = localStorage.getItem("lightState") || "off";
+        let savedTemp = localStorage.getItem("temperature") || 22;
+
+        // Apply saved settings
+        lightBtn.classList.toggle("on", savedLight === "on");
+        lightBtn.classList.toggle("off", savedLight === "off");
+        lightBtn.textContent = savedLight === "on" ? "Turn Off" : "Turn On";
+        tempSlider.value = savedTemp;
+        tempDisplay.textContent = savedTemp + "°C";
+
+        // Light Control
+        lightBtn.addEventListener("click", function() {
+            let isOn = lightBtn.classList.contains("on");
+            lightBtn.classList.toggle("on", !isOn);
+            lightBtn.classList.toggle("off", isOn);
+            lightBtn.textContent = isOn ? "Turn On" : "Turn Off";
+            localStorage.setItem("lightState", isOn ? "off" : "on"); // Save AI behavior
+        });
+
+        // Temperature Control
+        tempSlider.addEventListener("input", function() {
+            tempDisplay.textContent = tempSlider.value + "°C";
+        });
+
+        tempSlider.addEventListener("change", function() {
+            localStorage.setItem("temperature", tempSlider.value); // Save AI behavior
+        });
+     // Simulated Energy Monitoring (Replace with real API data)
+     function updateEnergyStats() {
+            let currentUsage = (Math.random() * 5 + 10).toFixed(2);
+            let solarContribution = (Math.random() * 5).toFixed(2);
+            let tips = currentUsage > 12 ? "Consider turning off unused appliances." : "Energy usage is optimal.";
+            
+            energyUse.textContent = currentUsage;
+            solarEnergy.textContent = solarContribution;
+            efficiencyTips.textContent = tips;
+        }
+
+        setInterval(updateEnergyStats, 5000); // Update every 5 seconds
+     
+        arStart.addEventListener("click", function() {
+            arStatus.textContent = "AR Visualization Active";
+            arPreview.style.display = "block";
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    arPreview.srcObject = stream;
+                    arPreview.play();
+                })
+                .catch(function(error) {
+                    arStatus.textContent = "Error: Unable to access camera";
+                });
+        });
+        securityButton.addEventListener("click", function() {
+            securityStatus.textContent = "Enabled with End-to-End Encryption";
+            alert("Security Mode Activated: Multi-Factor Authentication & Data Encryption Enabled.");
+        });
+      });
+  </script>
+</body>
+</html>

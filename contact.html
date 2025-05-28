@@ -1,0 +1,151 @@
+vscode<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Please Select</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: auto;
+    }
+
+    
+    .background-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: #f5f5f5;
+      z-index: -1;
+    }
+
+    .container {
+      background-color: #fff;
+      background: transparent;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: relative;
+    }
+
+    .header {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border: 1px solid #f0f0f0;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .option:hover {
+      background-color: #f9f9f9;
+    }
+
+    .option-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-icon img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .option-text {
+      text-align: left;
+    }
+
+    .option-text h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .option-text p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .arrow {
+      font-size: 16px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="close-btn" onclick="redirectToHome()">×</button>
+    <div class="header">Please select</div>
+
+    <div class="option">
+      <div class="option-icon">
+        <img src="./images/cn1.jpg" alt="Feedback">
+        <div class="option-text">
+          <h4>Feedback</h4>
+          <p>If you have any questions, please feel free to contact us.</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="option">
+      <div class="option-icon">
+        <img src="./images/cn2.jpg" alt="Service Hotline">
+        <div class="option-text">
+          <h4>Service Hotline</h4>
+          <p>Report a service request for support.</p>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+  </div>
+
+  <script>
+    function redirectToHome() {
+      // Change 'index.html' to the desired URL for the home page
+      window.location.href = './home1.html';
+    }
+  </script>
+</body>
+</html>
+
+

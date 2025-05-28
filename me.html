@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header img {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .editable {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 15px 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .editable input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      flex-grow: 1;
+    }
+
+    .item-text {
+      font-size: 16px;
+      color: #000;
+    }
+
+    .item-value {
+      font-size: 14px;
+      color: #999;
+    }
+
+    .logout {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .logout button, .save-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .logout button:hover, .save-btn:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .save-btn {
+      background-color: #2196f3;
+    }
+
+    .save-btn:hover {
+      background-color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="home.html">
+      </a>
+      Profile
+    </div>
+
+    <div class="item">
+      <div class="label">
+        <span class="item-text">Profile Photo</span>
+      </div>
+      <a href="profile-photo.html">›</a>
+    </div>
+
+    <div class="editable">
+      <label for="username" class="item-text">Username</label>
+      <input type="text" id="username" placeholder="Enter Username" value="null">
+    </div>
+
+    <div class="editable">
+      <label for="smarthome-id" class="item-text">SmartHome ID</label>
+      <input type="text" id="smarthome-id" placeholder="Enter SmartHome ID" value="null">
+    </div>
+
+    <div class="item">
+      <span class="item-text">Registration Area</span>
+      <span class="item-value">India</span>
+    </div>
+
+    <div class="item">
+      <a href="account-security.html">
+        <div class="label">
+          <span class="item-text">Account and Security</span>
+        </div>
+        ›
+      </a>
+    </div>
+
+    <div class="logout">
+      <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+    </div>
+
+    <div class="logout">
+      <button onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <script>
+    function saveChanges() {
+      const username = document.getElementById('username').value;
+      const smartHomeId = document.getElementById('smarthome-id').value;
+
+      if (username.trim() === '' || smartHomeId.trim() === '') {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      alert(`Changes Saved Successfully!\nUsername: ${username}\nSmartHome ID: ${smartHomeId}`);
+      
+    }
+
+    function logout() {
+      alert('Logged out successfully!');
+      window.location.href = 'home.html'; 
+    }
+  </script>
+</body>
+</html>

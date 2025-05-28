@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8fc;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+    }
+
+    .welcome-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 1200px;
+      margin-bottom: 20px;
+    }
+
+    .welcome-text {
+      max-width: 50%;
+    }
+
+    .welcome-text h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+    }
+
+    .welcome-text p {
+      font-size: 16px;
+      color: #666;
+      margin: 10px 0 20px;
+    }
+
+    .welcome-text button {
+      background-color: #00a9a5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .welcome-text button:hover {
+      background-color: #007f7c;
+    }
+
+    .welcome-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .device-section {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .device-section img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .device-section button {
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .device-section button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .self-service {
+      display: flex;
+      justify-content: space-around;
+      width: 90%;
+      max-width: 1200px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .self-service div {
+      text-align: center;
+    }
+
+    .self-service img {
+      width: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hidden-section {
+      display: none;
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">HOME</div>
+  </header>
+
+  <div class="content">
+    <div class="welcome-container">
+      <div class="welcome-text">
+        <h1>Welcome to SmartHome</h1>
+        <p>Learn more about the app with these tutorials.</p>
+        <a href="./gsp1.html"><button>Get Started</button></a>
+      </div>
+      <div class="welcome-image">
+        <img src="./image/LS20250106044147.png" alt="Smart Home Image">
+      </div>
+    </div>
+
+    <div class="device-section">
+      <img src="./image/hmsten.jpg" alt="Devices">
+      <p>Power on the device and get the network ready.</p>
+      <button><a href="./device.html">Add Device</a></button>
+    </div>
+
+    <div class="self-service">
+      <div>
+        <img src="./image/5981798.png" alt="Self Help">
+        <a href="./selfhelp.html">Self Help</a>
+      </div>
+      <div>
+        <img src="./image/LS20250106045651.png" alt="Contact Us">
+        <a href="./contact.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Weather - Smart Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5fdfc;
+      text-align: center;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #00a9a5;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .save-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00a9a5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background-color: #007f7c;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Set Weather for Smart Home</div>
+  
+  <div class="container">
+    <label for="location">Select Your Country:</label>
+    <select id="location"></select>
+
+    <label for="temperature">Set Preferred Temperature (°C):</label>
+    <input type="number" id="temperature" placeholder="Enter temperature">
+
+    <label for="mode">Weather Mode:</label>
+    <select id="mode">
+      <option value="auto">Auto Adjust</option>
+      <option value="manual">Manual</option>
+    </select>
+
+    <button class="save-btn" onclick="saveSettings()">Save Settings</button>
+  </div>
+
+  <script>
+    async function fetchCountries() {
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const countries = await response.json();
+        const locationSelect = document.getElementById('location');
+        
+        countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+        countries.forEach(country => {
+          let option = document.createElement('option');
+          option.value = country.name.common;
+          option.textContent = country.name.common;
+          locationSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      }
+    }
+
+    function saveSettings() {
+      const location = document.getElementById('location').value;
+      const temperature = document.getElementById('temperature').value;
+      const mode = document.getElementById('mode').value;
+      
+      alert(`Weather settings saved:\nLocation: ${location}\nTemperature: ${temperature}°C\nMode: ${mode}`);
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchCountries);
+  </script>
+</body>
+</html>

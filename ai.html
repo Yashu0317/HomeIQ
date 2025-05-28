@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <script>
+        async function sendMessage() {
+            var userMessage = document.getElementById("chat-input").value;
+            if (!userMessage.trim()) return;
+            
+            var chatBody = document.getElementById("chat-body");
+            chatBody.innerHTML += `<div class='user-message'>${userMessage}</div>`;
+            document.getElementById("chat-input").value = "";
+            chatBody.scrollTop = chatBody.scrollHeight;
+            
+            try {
+                let response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [
+                            {role: "system", content: "You are a helpful AI assistant. Answer queries concisely and clearly."},
+                            {role: "user", content: userMessage}
+                        ]
+                    })
+                });
+                
+                let data = await response.json();
+                let aiResponse = data.choices[0].message.content;
+                chatBody.innerHTML += `<div class='ai-message'>${aiResponse}</div>`;
+            } catch (error) {
+                chatBody.innerHTML += `<div class='ai-message'>Sorry, I am having trouble responding right now. Please try again later.</div>`;
+            }
+            
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        #chat-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        #chat-header {
+            background: #007f7c;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #chat-body {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            gap: 5px;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .user-message, .ai-message {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: #d1f0f0;
+            text-align: right;
+            align-self: flex-end;
+        }
+
+        .ai-message {
+            background: #f4f4f4;
+            text-align: left;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-header">AI Assistant</div>
+        <div id="chat-body"></div>
+        <div id="chat-footer">
+            <input type="text" id="chat-input" placeholder="Ask me anything..." onkeypress="if(event.key === 'Enter') sendMessage()">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</body>
+</html>

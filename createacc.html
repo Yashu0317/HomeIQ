@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Management</title> 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      background-image: url('./images/bg6.jpg');
+      background-size: cover; 
+      background-position: center ; 
+      background-repeat: no-repeat;
+      display: flex;
+    }
+    .form-container {
+      width: 90%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .form-container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-container label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .form-container input[type="email"], 
+    .form-container input[type="password"], 
+    .form-container input[type="tel"] {
+      width: 90%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    .form-container .terms {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .form-container .terms input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .form-container .terms a {
+      color: #00bfa5;
+      text-decoration: none;
+    }
+    .form-container .btn {
+      display: block;
+      width: 100%;
+      background-color: #00bfa5;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .form-container .btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .form-container .login-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .form-container .login-link a {
+      color: #00bfa5;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .option-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .option-buttons button {
+      width: 48%;
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .option-buttons button.active {
+      background-color: #00bfa5;
+      color: #fff;
+      border-color: #00bfa5;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Create New Account</h1>
+
+   
+    <div class="option-buttons">
+      <button id="email-option" class="active">Email</button>
+      <button id="phone-option">Phone</button>
+    </div>
+
+    <div id="email-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email">
+    </div>
+
+    <div id="phone-form" style="display: none;">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number">
+    </div>
+
+    <label for="password">Set Password</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <div class="terms">
+      <input type="checkbox" id="agree">
+      <label for="agree">
+        I have read and agree to 
+        <a href="#">Privacy Policy</a> and 
+        <a href="#">Software License and User Service Agreement</a>.
+      </label>
+    </div>
+
+    <button type="submit" class="btn" disabled>Create Account</button>
+    <div class="login-link">
+      Already have an account? <a id="to-login">Login</a>
+    </div>
+  </div>
+
+  <script>
+    const emailOption = document.getElementById('email-option');
+    const phoneOption = document.getElementById('phone-option');
+    const emailForm = document.getElementById('email-form');
+    const phoneForm = document.getElementById('phone-form');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const passwordInput = document.getElementById('password');
+    const createAccountButton = document.querySelector('.btn');
+    const agreeCheckbox = document.getElementById('agree');
+    const toLogin = document.getElementById('to-login');
+  
+    let isEmailSelected = true;
+  
+    emailOption.addEventListener('click', () => {
+      if (!isEmailSelected) {
+        isEmailSelected = true;
+        emailOption.classList.add('active');
+        phoneOption.classList.remove('active');
+        emailForm.style.display = 'block';
+        phoneForm.style.display = 'none';
+        validateForm();
+      }
+    });
+  
+    phoneOption.addEventListener('click', () => {
+      if (isEmailSelected) {
+        isEmailSelected = false;
+        phoneOption.classList.add('active');
+        emailOption.classList.remove('active');
+        phoneForm.style.display = 'block';
+        emailForm.style.display = 'none';
+        validateForm();
+      }
+    });
+  
+    function validateEmail(email) {
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return emailPattern.test(email);
+    }
+  
+    function validatePhone(phone) {
+      const phonePattern = /^[6-9]\d{9}$/; // 10-digit number starting with 6-9
+      return phonePattern.test(phone);
+    }
+  
+    function validatePassword(password) {
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return passwordPattern.test(password);
+    }
+  
+    function showError(input, message) {
+      let errorSpan = input.nextElementSibling;
+      if (!errorSpan || errorSpan.tagName !== 'SPAN') {
+        errorSpan = document.createElement('span');
+        errorSpan.style.color = 'red';
+        errorSpan.style.fontSize = '12px';
+        input.parentNode.insertBefore(errorSpan, input.nextSibling);
+      }
+      errorSpan.textContent = message;
+    }
+  
+    function clearError(input) {
+      let errorSpan = input.nextElementSibling;
+      if (errorSpan && errorSpan.tagName === 'SPAN') {
+        errorSpan.textContent = '';
+      }
+    }
+  
+    function validateForm() {
+      const emailOrPhoneInput = isEmailSelected ? emailInput : phoneInput;
+      let isValid = true;
+  
+      if (isEmailSelected) {
+        if (!validateEmail(emailInput.value)) {
+          showError(emailInput, 'Invalid email format.');
+          isValid = false;
+        } else {
+          clearError(emailInput);
+        }
+      } else {
+        if (!validatePhone(phoneInput.value)) {
+          showError(phoneInput, 'Enter a valid 10-digit phone number.');
+          isValid = false;
+        } else {
+          clearError(phoneInput);
+        }
+      }
+  
+      if (!validatePassword(passwordInput.value)) {
+        showError(
+          passwordInput,
+          'Password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character.'
+        );
+        isValid = false;
+      } else {
+        clearError(passwordInput);
+      }
+  
+      createAccountButton.disabled = !isValid || !agreeCheckbox.checked;
+    }
+  
+    emailInput.addEventListener('input', validateForm);
+    phoneInput.addEventListener('input', validateForm);
+    passwordInput.addEventListener('input', validateForm);
+    agreeCheckbox.addEventListener('change', validateForm);
+  
+    toLogin.addEventListener('click', () => {
+      alert('Redirecting to login page');
+      window.location.href = "login1.html";
+    });
+  
+    createAccountButton.addEventListener('click', () => {
+      if (createAccountButton.disabled) return;
+  
+      const accountDetails = {
+        email: isEmailSelected ? emailInput.value : null,
+        phone: !isEmailSelected ? phoneInput.value : null,
+        password: passwordInput.value,
+      };
+  
+      localStorage.setItem('email', accountDetails.email || '');
+      localStorage.setItem('phone', accountDetails.phone || '');
+      localStorage.setItem('password', accountDetails.password);
+  
+      alert('Account created successfully!');
+      window.location.href = "home.html";
+    });
+  </script>
+  
+</body>
+</html>

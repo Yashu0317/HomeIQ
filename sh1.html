@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Please Select</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: auto;
+    }
+
+    /* Full-page iframe background */
+    .background-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: -1;
+    }
+
+    .container {
+      background-color: #fff;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #eaeaea;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .list-item:hover {
+      background-color: #f7f7f7;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background webpage -->
+  <iframe class="background-frame" src="home1.html"></iframe>
+
+  <!-- Foreground content -->
+  <div class="container">
+    <div class="header">Please select</div>
+    
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675322.jpg" alt="User Guide Icon" class="icon">
+        <div class="text">
+          <span class="title">User Guide</span>
+          <span class="description">Easy instructions for using your device</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675365 copy.jpg" alt="Troubleshooting Icon" class="icon">
+        <div class="text">
+          <span class="title">Troubleshooting</span>
+          <span class="description">Analyze and diagnose issues</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675423.jpg" alt="FAQ Icon" class="icon">
+        <div class="text">
+          <span class="title">FAQ</span>
+          <span class="description">Answers to common questions</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="close-btn" onclick="document.querySelector('.container').style.transform = 'translateY(100%)'; history.back();">×</span>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Please Select</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Full-screen blurred background */
+    .background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .background-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: blur(10px); /* Apply blur effect */
+      transform: scale(1.1); /* Slightly zoom to reduce edges */
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2); /* Light overlay for readability */
+      backdrop-filter: blur(10px); /* Extra blur effect */
+      z-index: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: relative;
+      z-index: 1; /* Keep content above the background */
+    }
+
+    .header {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #eaeaea;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .list-item:hover {
+      background-color: #f7f7f7;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Wrapper -->
+  <div class="background-wrapper">
+    <iframe class="background-frame" src="home1.html"></iframe>
+    <div class="overlay"></div> <!-- Extra blur layer -->
+  </div>
+
+  <!-- Foreground Content -->
+  <div class="container">
+    <div class="header">Please select</div>
+    
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675322.jpg" alt="User Guide Icon" class="icon">
+        <div class="text">
+          <span class="title">User Guide</span>
+          <span class="description">Easy instructions for using your device</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675365 copy.jpg" alt="Troubleshooting Icon" class="icon">
+        <div class="text">
+          <span class="title">Troubleshooting</span>
+          <span class="description">Analyze and diagnose issues</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <div class="icon-text">
+        <img src="./images/1736442675423.jpg" alt="FAQ Icon" class="icon">
+        <div class="text">
+          <span class="title">FAQ</span>
+          <span class="description">Answers to common questions</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="close-btn" onclick="window.location.href='home1.html';">×</span>
+
+</body>
+</html>
+

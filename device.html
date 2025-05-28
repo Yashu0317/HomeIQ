@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Device</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        background-image: url('./images/bg6.jpg');
+        background-size: cover; 
+        background-position: center ; 
+        background-repeat: no-repeat;
+      
+        
+    }
+
+    header {
+        background-color: #ffffff;
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+    }
+    
+    header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #007f7c;
+    }
+    
+    .set-weather {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .set-weather img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    
+  
+      .menu-icon img {
+        width: 20px;
+        height: 20px;
+        border-radius: 10%;
+      }
+
+
+      .container {
+    max-width: 90%;
+    margin: 1rem auto;
+    margin-bottom: 5px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px); 
+    background-blend-mode: color-burn;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(252, 249, 249, 0.1);
+}
+
+
+    .section {
+        margin-bottom: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+        color: #333;
+    }
+
+    .section p {
+        margin: 0.5rem 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        text-align: left;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        background-color: #00a9a5;
+        color: #ffffff;
+        padding: 0.8rem 1.5rem;
+        text-align: left;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #c2e9e9;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .tabs button {
+        flex: 1;
+        background: #f4f4f4;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .tabs button.active {
+        background: #101818;
+        color: #ffffff;
+    }
+
+    .device-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        justify-content: center;
+        
+        
+    }
+
+    .device-grid button {
+        
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 1rem;
+        text-align: justify;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        width: 90%;
+        min-width: 20px;
+    }
+
+    .device-grid button:hover {
+        background: #f0f0f0;
+        border-color: #ccc;
+    }
+
+    .device-grid button img {
+            width: 60px;
+            height: auto;
+            margin-bottom: 0.5rem; 
+            border-radius: 10%;
+        }
+
+    .device-grid button span {
+        font-size: 4rem; 
+    }
+
+    .device-grid button a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+    #chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #00a9a5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+#chatbot-icon img {
+  width: 35px;
+  height: 35px;
+}
+
+#chatbot-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#chat-header {
+  background: #00a9a5;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+#chat-input button {
+  background: #00a9a5;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+</style>
+
+<body>
+    <header>
+        <h1>Add Device</h1>
+    <br>
+    <a href="./setweather.html">
+        <button class="set-weather">
+          <img src="./images/weather.png" alt="Weather Icon">
+          Set weather
+        </button>
+      </a>
+      
+    </header>
+
+    <div class="container section">
+        <h2>Discover Nearby Devices</h2>
+        <div style="text-align: center; margin: 20px 0;">
+            <img src="./images/phset.webp" alt="Discover Devices" style="max-width: auto; height: auto;">
+            <p>Complete settings to discover nearby devices.</p>
+        </div>
+        
+        <center><a href="./setting.html" class="btn-primary">Go to Settings</a></center>
+    </div>
+    
+    
+    <div class="container section" style="display: flex; align-items: center; gap: 20px;">
+       
+        <div style="flex-shrink: 0;">
+            <img src="./images/scan.png" alt="QR Scanner" style="max-width: 100px; height: auto;">
+        </div>
+    
+       
+        <div>
+            <h2>Scan the QR Code</h2>
+            <p>Find your QR code on your device or packaging.</p>
+        </div>
+        <a href="profile-photo.html" >›</a>
+    </div>
+
+    
+<div class="manual-add-section" style="margin-top: 20px; background-color: #ffffff; border-top: 3px solid #00a9a5; padding: 1.5rem; border-radius: 10px; max-width: 768px; margin: 1rem auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: left; color: #333; margin-bottom: 1rem;">Add Device Manually</h2>
+
+    
+    <div class="device-grid">
+       
+        <button onclick="location.href='split-type-ac.html'">
+            <img src="./images/LS20250113004358.png" alt="Split-type AC"  style="max-width:100; height: auto;">
+            Split-type AC
+            <a href="split-type-ac.html"></a>
+        </button>
+
+       
+        <button onclick="location.href='window-ac.html'">
+            <img src="./images/LS20250113004406.png" alt="Window AC" style="max-width: 100; height: auto;">
+            Window AC
+            <a href="window-ac.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='portable-ac.html'">
+            <img src="./images/LS20250113004416.png" alt="Portable AC" style="max-width: 100; height: auto;">
+            Portable AC
+            <a href="portable-ac.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='light-commercial-ac.html'">
+            <img src="./images/LS20250113004422.png" alt="Light Commercial AC" style="max-width: 100; height: auto;">
+            Light Commercial AC
+            <a href="light-commercial-ac.html"></a>
+        </button>
+        
+
+         
+          <button onclick="location.href='commercial-ac.html'">
+            <img src="./images/CM AC.png" alt="Commercial AC" style="max-width: 100; height: auto;">
+            Commercial AC
+            <a href="commercial-ac.html"></a>
+        </button>
+      
+
+        
+        <button onclick="location.href='dehumidifier.html'">
+            <img src="./images/dehumidifier.jpg" alt="Dehumidifier" style="max-width: 100; height: auto;">
+            Dehumidifier
+            <a href="dehumidifier.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='fresh-air.html'">
+            <img src="./images/FRISH AIR.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Fresh Air
+            <a href="fresh-air.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='wired-controller.html'">
+            <img src="./images/WIR CON.png" alt="Wired Controller" style="max-width: 100; height: auto;">
+            Wired Controller
+            <a href="wired-controller.html"></a>
+        </button>
+
+           
+           <button onclick="location.href='cabinet units.html' ">
+            <img src="./images/CB UNIT.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+           Cabinet Unit
+            <a href="cabinet units.html"></a>
+        </button>
+
+           
+           <button onclick="location.href='smart controller.html'">
+            <img src="./images/SM CON.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Smart Controller
+            <a href="smart controller.html"></a>
+        </button>
+       
+
+        <left><h>Kitchen appliances</h></left>
+        <br>
+       
+           
+           <button onclick="location.href='dishwasher.html'">
+            <img src="./images/WASH MISH.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Dishwasher
+            <a href="dishwasher.html"></a>
+        </button>
+
+           
+           <button onclick="location.href='Rande Hood.html'">
+            <img src="./images/LS20250113004443.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Rande Hood
+            <a href="Rande Hood.html"></a>
+        </button>
+
+           
+           <button onclick="location.href='water Dispenser & purifier device.html'">
+            <img src="./images/water-purifier.webp" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Water Dispenser & Purifier Device
+            <a href="water Dispenser & purifier device.html"></a>
+        </button>
+
+          
+           <button onclick="location.href='MeatbProbe.html'">
+            <img src="./images/MEAT PROBE.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Meatb Probe
+            <a href="MeatbProbe.html"></a>
+        </button>
+
+           
+           <button onclick="location.href='refrigerator.html'">
+            <img src="./images/REF.png" alt="Fresh Air" style="max-width: 100; height: auto;">
+            Refrigerator
+            <a href="refrigerator.html"></a>
+        </button>
+
+
+       <br>
+        <left><h>Cleaning Appliances</h></left>
+        <br>
+
+
+
+           
+           <button onclick="location.href='vacuumcleaner.html'">
+            <img src="./images/VC.webp" alt="Fresh Air" style="max-width: 100; height: auto;" >
+            Vacuum Cleaner
+            <a href="vacuumcleaner.html"></a>
+        </button>
+
+
+        <br>
+        <left><h>Water Heater</h></left>
+        <br>
+
+           
+           <button onclick="location.href='central-heating-water-heater.html'">
+            <img src="./images/cen water_heater.png" alt="central-heating-water-heater" style="max-width: 100; height: auto;">
+            Central Heating Water Heater
+            <a href="central-heating-water-heater.html"></a>
+        </button>
+
+           
+        <button onclick="location.href='air-source-heat-pump-water-heater.html'">
+            <img src="./images/airs.png" alt="air-source-heat-pump-water-heater" style="max-width: 100; height: auto;">
+            Air Source Heat Pump Water Heater
+            <a href="air-source-heat-pump-water-heater.html"></a>
+        </button>
+
+      
+        <button onclick="location.href='Gas-Water-Heater.html'">
+            <img src="./images/gas water heat.png" alt="Gas-Water-Heater" style="max-width: 100; height: auto;">
+            Gas Water Heater
+            <a href="Gas-Water-Heater.html"></a>
+        </button>
+
+       
+        <button onclick="location.href='Gas-Boiler.html'">
+            <img src="./images/gas Boiler.png" alt="Gas-Boiler" style="max-width: 100; height: auto;">
+            Gas Boiler
+            <a href="Gas-Boiler.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='Electric-Water-Heater.html'">
+            <img src="./images/ele_water_heater_.png" alt="Electric-Water-Heater" style="max-width: 100; height: auto;">
+            Electric Water Heater
+            <a href="Electric-Water-Heater.html"></a>
+        </button>
+
+        <br><br>
+        <left><h>Others</h></left>
+        <br>
+
+        
+        <button onclick="location.href='Energy-Manager.html'">
+            <img src="./images/ene man.webp" alt="Energy-Manager" style="max-width: 100; height: auto;">
+            Energy Manager
+            <a href="Energy-Manager.html"></a>
+        </button>
+
+        
+        <button onclick="location.href='Smart-Door.html'">
+            <img src="./images/Door-Lock.png" alt="Smart-Door" style="max-width: 100; height: auto;">
+            Smart Door
+            <a href="Smart-Door.html"></a>
+        </button>
+
+       
+        <button onclick="location.href='Inverter.html'">
+            <img src="./images/LS20250113004513.png" alt="Inverter" style="max-width: 100; height: auto;">
+            Inverter
+            <a href="Inverter.html"></a>
+        </button>
+    </div>
+</div>
+<!-- Chatbot Floating Icon -->
+<div id="chatbot-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="Chatbot">
+  </div>
+  
+  <!-- Chatbot Window -->
+  <div id="chatbot-container">
+    <div id="chat-header">Chatbot</div>
+    <div id="chat-body"></div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  
+<script>
+    document.getElementById("chatbot-icon").addEventListener("click", function() {
+      let chatbox = document.getElementById("chatbot-container");
+      chatbox.style.display = chatbox.style.display === "flex" ? "none" : "flex";
+    });
+  
+    document.getElementById("chat-header").addEventListener("click", function() {
+      document.getElementById("chatbot-container").style.display = "none";
+    });
+  
+    function sendMessage() {
+      let input = document.getElementById("user-input");
+      let message = input.value.trim();
+      if (message) {
+        let chatBody = document.getElementById("chat-body");
+        chatBody.innerHTML += `<p><b>You:</b> ${message}</p>`;
+        
+        let response = getBotResponse(message);
+        chatBody.innerHTML += `<p><b>Bot:</b> ${response}</p>`;
+        
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+        input.focus(); // Keep focus on input field after sending a message
+      }
+    }
+  
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+  
+      if (input.includes("hi") || input.includes("hello")) {
+          return "Hello! How can I assist you today? 😊";
+      }
+      if (input.includes("how are you")) {
+          return "I'm just a bot, but I'm here to help! What do you need?";
+      }
+      if (input.includes("help")) {
+          return "Sure! Try asking about adding devices, scanning QR codes, or settings.";
+      }
+      if (input.includes("add device")) {
+          return "You can add a device manually or scan a QR code from your packaging.";
+      }
+      if (input.includes("qr code")) {
+          return "Go to 'Scan QR Code' to find and link your device!";
+      }
+      if (input.includes("weather")) {
+          return "Click on 'Set Weather' to configure your location-based settings.";
+      }
+      if (input.includes("bye")) {
+          return "Goodbye! Feel free to come back if you need more help. 😊";
+      }
+  
+      return "I'm not sure how to respond to that. Can you rephrase?";
+    }
+  </script>
+  
+
+</body>
+</html>

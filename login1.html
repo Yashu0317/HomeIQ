@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      background-image: url('./images/bg6.jpg');
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .form-container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-container label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .form-container input {
+      width: 90%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .form-container .btn {
+      display: block;
+      width: 100%;
+      background-color: #00bfa5;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .form-container .btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .form-container .signup-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .form-container .signup-link a {
+      color: #00bfa5;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Chatbot Icon */
+    #chatbot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #00a9a5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+    
+    #chatbot-icon img {
+      width: 35px;
+      height: 35px;
+    }
+    
+    /* Chatbot Container */
+    #chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #chat-header {
+      background: #00a9a5;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #chat-body {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    #chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    #chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      font-size: 14px;
+    }
+
+    #chat-input button {
+      background: #00a9a5;
+      color: white;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Form -->
+  <div class="form-container">
+    <h1>Login</h1>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button type="submit" class="btn" id="login-btn" disabled>Login</button>
+    
+    <div class="signup-link">
+      Don't have an account? <a href="./createacc.html">Create Account</a>
+    </div>
+  </div>
+
+  <!-- Chatbot Icon -->
+  <div id="chatbot-icon">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="Chatbot">
+  </div>
+
+  <!-- Chatbot Window -->
+  <div id="chatbot-container">
+    <div id="chat-header">Chatbot</div>
+    <div id="chat-body"></div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('login-btn');
+
+    function validateForm() {
+      loginButton.disabled = !(emailInput.value && passwordInput.value);
+    }
+
+    emailInput.addEventListener('input', validateForm);
+    passwordInput.addEventListener('input', validateForm);
+
+    loginButton.addEventListener('click', () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      
+      const savedEmail = localStorage.getItem('email');
+      const savedPassword = localStorage.getItem('password');
+
+      if (!savedEmail || !savedPassword) {
+        alert('No account found. Redirecting to account creation.');
+        window.location.href = "createacc.html";
+        return;
+      }
+
+      if (email === savedEmail && password === savedPassword) {
+        alert('Login successful!');
+        window.location.href = "home1.html"; 
+      } else {
+        alert('Invalid email or password');
+      }
+    });
+
+    // Chatbot Toggle
+    document.getElementById("chatbot-icon").addEventListener("click", function() {
+      let chatbox = document.getElementById("chatbot-container");
+      chatbox.style.display = chatbox.style.display === "flex" ? "none" : "flex";
+    });
+
+    document.getElementById("chat-header").addEventListener("click", function() {
+      document.getElementById("chatbot-container").style.display = "none";
+    });
+
+    // Chatbot Response
+    function sendMessage() {
+      let input = document.getElementById("user-input");
+      let message = input.value.trim();
+      if (message) {
+        let chatBody = document.getElementById("chat-body");
+        chatBody.innerHTML += `<p><b>You:</b> ${message}</p>`;
+        
+        let response = getBotResponse(message);
+        chatBody.innerHTML += `<p><b>Bot:</b> ${response}</p>`;
+        
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    }
+
+    function getBotResponse(input) {
+    input = input.toLowerCase();
+
+    // Keyword-based responses
+    if (input.includes("hi") || input.includes("hello")) {
+        return "Hello! How can I assist you today? 😊";
+    }
+    if (input.includes("how are you")) {
+        return "I'm just a bot, but I'm here to help! What do you need?";
+    }
+    if (input.includes("help")) {
+        return "Sure! What do you need help with? Try asking about login issues, account setup, or features.";
+    }
+    if (input.includes("login")) {
+        return "Are you having trouble logging in? Make sure you're using the correct email and password.";
+    }
+    if (input.includes("forgot password")) {
+        return "You can reset your password by clicking on 'Forgot Password' on the login page.";
+    }
+    if (input.includes("create account")) {
+        return "To create an account, go to the signup page and enter your details.";
+    }
+    if (input.includes("features")) {
+        return "Our platform offers smart home automation, device control, and real-time monitoring.";
+    }
+    if (input.includes("bye")) {
+        return "Goodbye! Feel free to come back if you have more questions. 😊";
+    }
+  
+    // Default response if no match
+    return "I'm not sure how to respond to that. Can you rephrase?";
+}
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      background-image: url('./images/bg6.jpg');
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #007f7c;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      background-color: #fefefe;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      padding: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .list-item:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .content {
+      text-align: left;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin: 0;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #666;
+      margin: 5px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>How to Use</h1>
+    
+    <div class="list-item" onclick="alert('Connect your device to the app')">
+      <img src="./images/1736122958283.jpg" alt="Connect Icon" class="icon">
+      <div class="content">
+        <p class="title">Connect your device to the app</p>
+        <p class="description">Add your first device, build smarter life</p>
+      </div>
+    </div>
+
+    <div class="list-item" onclick="alert('Control device with app')">
+      <img src="./images/1736122958459.jpg" alt="Control Icon" class="icon">
+      <div class="content">
+        <p class="title">Control device with app</p>
+        <p class="description">Remote control from your mobile phone</p>
+      </div>
+    </div>
+
+    <div class="list-item" onclick="alert('Share devices with others')">
+      <img src="./images/1736122958349.jpg" alt="Share Icon" class="icon">
+      <div class="content">
+        <p class="title">Share devices with others</p>
+        <p class="description">Allow other users to control this device</p>
+      </div>
+    </div>
+
+    <div class="list-item" onclick="alert('Create a smart scene')">
+      <img src="./images/1736122958399.jpg" alt="Scene Icon" class="icon">
+      <div class="content">
+        <p class="title">Create a smart scene</p>
+        <p class="description">Have your device respond to various triggers</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
